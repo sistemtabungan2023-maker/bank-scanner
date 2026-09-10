@@ -16,13 +16,11 @@
 
 <title>Bank Scanner</title>
 
-<!-- TABLER ICONS -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
 >
 
-<!-- HTML5 QR CODE -->
 <script
   src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
 ></script>
@@ -72,6 +70,7 @@ body{
   min-height:100dvh;
 
   display:flex;
+
   flex-direction:column;
 
   background:#07111f;
@@ -91,6 +90,7 @@ body{
   display:flex;
 
   align-items:center;
+
   justify-content:space-between;
 
   padding:0 14px;
@@ -131,6 +131,7 @@ body{
   border-radius:9px;
 
   display:grid;
+
   place-items:center;
 
   background:#155eef;
@@ -216,6 +217,7 @@ body{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   padding:12px;
@@ -248,9 +250,7 @@ body{
 ========================================================= */
 
 .title{
-
   text-align:center;
-
   flex:0 0 auto;
 }
 
@@ -460,15 +460,8 @@ body{
   left:-2px;
   top:-2px;
 
-  border-left:
-    4px
-    solid
-    #fff;
-
-  border-top:
-    4px
-    solid
-    #fff;
+  border-left:4px solid #fff;
+  border-top:4px solid #fff;
 
   border-radius:
     10px
@@ -482,15 +475,8 @@ body{
   right:-2px;
   top:-2px;
 
-  border-right:
-    4px
-    solid
-    #fff;
-
-  border-top:
-    4px
-    solid
-    #fff;
+  border-right:4px solid #fff;
+  border-top:4px solid #fff;
 
   border-radius:
     0
@@ -504,15 +490,8 @@ body{
   left:-2px;
   bottom:-2px;
 
-  border-left:
-    4px
-    solid
-    #fff;
-
-  border-bottom:
-    4px
-    solid
-    #fff;
+  border-left:4px solid #fff;
+  border-bottom:4px solid #fff;
 
   border-radius:
     0
@@ -526,15 +505,8 @@ body{
   right:-2px;
   bottom:-2px;
 
-  border-right:
-    4px
-    solid
-    #fff;
-
-  border-bottom:
-    4px
-    solid
-    #fff;
+  border-right:4px solid #fff;
+  border-bottom:4px solid #fff;
 
   border-radius:
     0
@@ -616,6 +588,7 @@ body{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   background:
@@ -701,13 +674,12 @@ body{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   gap:6px;
 
-  padding:
-    7px
-    10px;
+  padding:7px 10px;
 
   border-radius:10px;
 
@@ -767,16 +739,13 @@ body{
 
 /* =========================================================
    BUTTONS
-   HANYA 2 TOMBOL UTAMA
 ========================================================= */
 
 .actions{
 
   display:grid;
 
-  grid-template-columns:
-    1fr
-    1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:7px;
 
@@ -791,9 +760,7 @@ button{
 
   border-radius:10px;
 
-  padding:
-    8px
-    11px;
+  padding:8px 11px;
 
   font-size:9px;
 
@@ -802,6 +769,7 @@ button{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   gap:6px;
@@ -830,13 +798,6 @@ button:disabled{
   background:#fff;
 
   color:#182033;
-}
-
-.btn-danger{
-
-  background:#991b1b;
-
-  color:#fff;
 }
 
 
@@ -888,9 +849,7 @@ button:disabled{
 
   display:grid;
 
-  grid-template-columns:
-    1fr
-    1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:6px;
 
@@ -921,7 +880,7 @@ button:disabled{
 
 
 /* =========================================================
-   EMBEDDED MODE
+   EMBEDDED
 ========================================================= */
 
 body.embedded .header{
@@ -933,6 +892,7 @@ body.embedded .main{
   padding:0;
 
   width:100%;
+
   height:100%;
 
   min-height:100dvh;
@@ -941,38 +901,25 @@ body.embedded .main{
 body.embedded .scanner{
 
   width:100%;
+
   height:100%;
 
   max-width:none;
+
   max-height:none;
 
   gap:0;
 }
 
-
-/*
- * Dalam iframe:
- * judul dan footer dihilangkan
- * supaya tombol scanner tetap terlihat.
- */
 body.embedded .title,
 body.embedded .footer{
   display:none!important;
 }
 
-
-/*
- * Kamera mengisi area utama.
- */
 body.embedded .camera{
 
   width:100%;
 
-  /*
-   * Jangan memakai min-height:100dvh
-   * karena status dan tombol berada
-   * di luar kamera.
-   */
   height:
     calc(
       100dvh - 94px
@@ -985,10 +932,6 @@ body.embedded .camera{
   box-shadow:none;
 }
 
-
-/*
- * Status tetap berada di bawah kamera.
- */
 body.embedded .status{
 
   position:absolute;
@@ -1023,11 +966,6 @@ body.embedded .status{
     );
 }
 
-
-/*
- * HANYA SATU BARIS TOMBOL:
- * Mulai Scanner + Ganti Kamera.
- */
 body.embedded .actions{
 
   position:absolute;
@@ -1039,17 +977,11 @@ body.embedded .actions{
 
   z-index:40;
 
-  grid-template-columns:
-    1fr
-    1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:6px;
 }
 
-
-/*
- * Tombol cukup tinggi untuk disentuh.
- */
 body.embedded .actions button{
 
   min-height:42px;
@@ -1066,10 +998,6 @@ body.embedded .actions .btn-primary{
   color:#fff;
 }
 
-
-/*
- * Hasil scan.
- */
 body.embedded .result{
 
   position:absolute;
@@ -1079,8 +1007,7 @@ body.embedded .result{
 
   top:50%;
 
-  transform:
-    translateY(-50%);
+  transform:translateY(-50%);
 
   z-index:50;
 
@@ -1097,17 +1024,6 @@ body.embedded .result{
 }
 
 
-/*
- * Karena tombol lama tidak digunakan,
- * jangan pernah tampilkan tombol
- * tambahan di embedded mode.
- */
-body.embedded #stopButton,
-body.embedded #retryButton{
-  display:none!important;
-}
-
-
 /* =========================================================
    MOBILE
 ========================================================= */
@@ -1120,9 +1036,7 @@ body.embedded #retryButton{
 
     flex-basis:52px;
 
-    padding:
-      0
-      10px;
+    padding:0 10px;
   }
 
   .header-icon{
@@ -1339,7 +1253,6 @@ body.embedded #retryButton{
 
 </head>
 
-
 <body>
 
 <div class="app">
@@ -1352,9 +1265,7 @@ body.embedded #retryButton{
     <div class="header-left">
 
       <div class="header-icon">
-
         <i class="ti ti-qrcode"></i>
-
       </div>
 
       <div>
@@ -1422,9 +1333,7 @@ body.embedded #retryButton{
           <div class="idle-content">
 
             <div class="idle-icon">
-
               <i class="ti ti-camera"></i>
-
             </div>
 
             <strong>
@@ -1475,12 +1384,7 @@ body.embedded #retryButton{
       </div>
 
 
-      <!--
-        TOMBOL UTAMA
-        SEKARANG HANYA 2:
-        1. MULAI SCANNER
-        2. GANTI KAMERA
-      -->
+      <!-- HANYA 2 TOMBOL -->
 
       <div class="actions">
 
@@ -1565,9 +1469,7 @@ body.embedded #retryButton{
 
 
       <div class="footer">
-
         BANK NASABAH • QR Scanner HTTPS
-
       </div>
 
 
@@ -1589,13 +1491,14 @@ body.embedded #retryButton{
    EMBEDDED
 ========================================================= */
 
-var params =
+var params=
   new URLSearchParams(
     window.location.search
   );
 
-var embedded =
-  params.get('embedded') === '1';
+var embedded=
+  params.get('embedded')==='1';
+
 
 if(embedded){
 
@@ -1610,47 +1513,47 @@ if(embedded){
    ELEMENT
 ========================================================= */
 
-var reader =
+var reader=
   document.getElementById(
     'reader'
   );
 
-var idle =
+var idle=
   document.getElementById(
     'idle'
   );
 
-var statusBox =
+var statusBox=
   document.getElementById(
     'status'
   );
 
-var startButton =
+var startButton=
   document.getElementById(
     'startButton'
   );
 
-var switchButton =
+var switchButton=
   document.getElementById(
     'switchButton'
   );
 
-var result =
+var result=
   document.getElementById(
     'result'
   );
 
-var resultValue =
+var resultValue=
   document.getElementById(
     'resultValue'
   );
 
-var copyButton =
+var copyButton=
   document.getElementById(
     'copyButton'
   );
 
-var scanAgainButton =
+var scanAgainButton=
   document.getElementById(
     'scanAgainButton'
   );
@@ -1660,19 +1563,19 @@ var scanAgainButton =
    STATE
 ========================================================= */
 
-var scanner = null;
+var scanner=null;
 
-var running = false;
+var running=false;
 
-var starting = false;
+var starting=false;
 
-var cameras = [];
+var cameras=[];
 
-var cameraIndex = 0;
+var cameraIndex=0;
 
-var lastAccount = '';
+var lastAccount='';
 
-var lastTime = 0;
+var lastTime=0;
 
 
 /* =========================================================
@@ -1685,27 +1588,27 @@ function setStatus(
   icon
 ){
 
-  var span =
+  var span=
     statusBox.querySelector(
       'span'
     );
 
-  var i =
+  var i=
     statusBox.querySelector(
       'i'
     );
 
-  span.textContent =
+  span.textContent=
     text;
 
-  i.className =
+  i.className=
     'ti '+
     (
-      icon ||
+      icon||
       'ti-info-circle'
     );
 
-  statusBox.className =
+  statusBox.className=
     'status';
 
   if(type){
@@ -1725,11 +1628,11 @@ function setStatus(
 
 function updateButtons(){
 
-  startButton.disabled =
-    running ||
+  startButton.disabled=
+    running||
     starting;
 
-  switchButton.disabled =
+  switchButton.disabled=
     starting;
 
 }
@@ -1741,35 +1644,32 @@ function updateButtons(){
 
 function parseAccount(raw){
 
-  var value =
+  var value=
     String(
-      raw || ''
+      raw||''
     ).trim();
 
 
-  var parts =
+  var parts=
     value.split('|');
 
 
   if(
-    parts.length >= 3 &&
+    parts.length>=3&&
     (
-      parts[0] ===
-        'BANKNASABAH' ||
-      parts[0] ===
-        'BANKAPP'
-    ) &&
-    parts[1] ===
-      'REK'
+      parts[0]==='BANKNASABAH'||
+      parts[0]==='BANKAPP'
+    )&&
+    parts[1]==='REK'
   ){
 
-    value =
+    value=
       parts[2].trim();
 
   }
 
 
-  value =
+  value=
     value.replace(
       /[^\d]/g,
       ''
@@ -1791,7 +1691,7 @@ function parseAccount(raw){
 
 
 /* =========================================================
-   SEND RESULT TO MAIN APPLICATION
+   SEND RESULT
 ========================================================= */
 
 function sendResult(account){
@@ -1810,23 +1710,15 @@ function sendResult(account){
   };
 
 
-  try{
-
-    if(
-      window.parent &&
-      window.parent !== window
-    ){
-
-      window.parent.postMessage(
-        message,
-        '*'
-      );
-
-    }
-
-  }catch(_){}
-
-
+  /*
+   * INI YANG PALING PENTING.
+   *
+   * Scanner dibuka dari Apps Script
+   * memakai window.open().
+   *
+   * Karena itu window.opener adalah
+   * halaman Bank Nasabah.
+   */
   try{
 
     if(
@@ -1841,9 +1733,20 @@ function sendResult(account){
 
     }
 
-  }catch(_){}
+  }catch(error){
+
+    console.error(
+      'Gagal mengirim ke aplikasi utama:',
+      error
+    );
+
+  }
 
 
+  /*
+   * Tetap dukung BroadcastChannel
+   * sebagai cadangan.
+   */
   try{
 
     if(
@@ -1851,7 +1754,7 @@ function sendResult(account){
       in window
     ){
 
-      var channel =
+      var channel=
         new BroadcastChannel(
           'BANK_NASABAH_SCANNER'
         );
@@ -1877,7 +1780,7 @@ async function handleResult(
   decodedText
 ){
 
-  var account =
+  var account=
     parseAccount(
       decodedText
     );
@@ -1896,14 +1799,14 @@ async function handleResult(
   }
 
 
-  var now =
+  var now=
     Date.now();
 
 
   if(
-    account ===
-      lastAccount &&
-    now-lastTime <
+    account===
+      lastAccount&&
+    now-lastTime<
       2500
   ){
 
@@ -1912,14 +1815,14 @@ async function handleResult(
   }
 
 
-  lastAccount =
+  lastAccount=
     account;
 
-  lastTime =
+  lastTime=
     now;
 
 
-  resultValue.textContent =
+  resultValue.textContent=
     account;
 
   result.classList.add(
@@ -1934,15 +1837,39 @@ async function handleResult(
   );
 
 
+  /*
+   * Kirim ke Apps Script.
+   */
   sendResult(
     account
   );
 
 
+  /*
+   * Matikan kamera.
+   */
   await stopScanner();
 
 
   updateButtons();
+
+
+  /*
+   * Beri waktu message diterima
+   * sebelum window scanner ditutup.
+   */
+  setTimeout(
+    function(){
+
+      try{
+
+        window.close();
+
+      }catch(_){}
+
+    },
+    300
+  );
 
 }
 
@@ -1955,7 +1882,7 @@ async function getCameras(){
 
   try{
 
-    cameras =
+    cameras=
       (
         await navigator
           .mediaDevices
@@ -1964,7 +1891,7 @@ async function getCameras(){
       .filter(
         function(device){
 
-          return device.kind ===
+          return device.kind===
             'videoinput';
 
         }
@@ -1981,22 +1908,23 @@ async function getCameras(){
 
 function selectRearCamera(){
 
-  var index =
+  var index=
     cameras.findIndex(
       function(camera){
 
         return /back|rear|environment/i
           .test(
-            camera.label || ''
+            camera.label||
+            ''
           );
 
       }
     );
 
 
-  if(index >= 0){
+  if(index>=0){
 
-    cameraIndex =
+    cameraIndex=
       index;
 
   }
@@ -2011,7 +1939,7 @@ function selectRearCamera(){
 async function startScanner(){
 
   if(
-    starting ||
+    starting||
     running
   ){
 
@@ -2021,7 +1949,7 @@ async function startScanner(){
 
 
   if(
-    typeof Html5Qrcode ===
+    typeof Html5Qrcode===
       'undefined'
   ){
 
@@ -2037,7 +1965,7 @@ async function startScanner(){
 
 
   if(
-    !navigator.mediaDevices ||
+    !navigator.mediaDevices||
     !navigator.mediaDevices.getUserMedia
   ){
 
@@ -2053,11 +1981,11 @@ async function startScanner(){
 
 
   if(
-    location.protocol !==
-      'https:' &&
-    location.hostname !==
-      'localhost' &&
-    location.hostname !==
+    location.protocol!==
+      'https:'&&
+    location.hostname!==
+      'localhost'&&
+    location.hostname!==
       '127.0.0.1'
   ){
 
@@ -2072,7 +2000,9 @@ async function startScanner(){
   }
 
 
-  starting=true;
+  starting=
+    true;
+
 
   updateButtons();
 
@@ -2086,7 +2016,10 @@ async function startScanner(){
 
   try{
 
-    var permissionStream =
+    /*
+     * Permission camera.
+     */
+    var permissionStream=
       await navigator
         .mediaDevices
         .getUserMedia({
@@ -2109,7 +2042,9 @@ async function startScanner(){
         function(track){
 
           try{
+
             track.stop();
+
           }catch(_){}
 
         }
@@ -2117,6 +2052,16 @@ async function startScanner(){
 
 
     await getCameras();
+
+
+    if(
+      cameras.length&&
+      cameraIndex>=cameras.length
+    ){
+
+      cameraIndex=0;
+
+    }
 
 
     selectRearCamera();
@@ -2135,7 +2080,7 @@ async function startScanner(){
     }
 
 
-    scanner =
+    scanner=
       new Html5Qrcode(
         'reader'
       );
@@ -2145,24 +2090,22 @@ async function startScanner(){
 
 
     if(
-      cameras[cameraIndex] &&
+      cameras[cameraIndex]&&
       cameras[cameraIndex].deviceId
     ){
 
-      cameraId =
+      cameraId=
         cameras[
           cameraIndex
         ].deviceId;
 
     }else{
 
-      cameraId = {
-
+      cameraId={
         facingMode:{
           ideal:
             'environment'
         }
-
       };
 
     }
@@ -2173,11 +2116,7 @@ async function startScanner(){
     );
 
 
-    /*
-     * Ukuran QR mengikuti ukuran
-     * layar agar tetap nyaman.
-     */
-    var size =
+    var size=
       Math.max(
         170,
         Math.min(
@@ -2230,10 +2169,10 @@ async function startScanner(){
     );
 
 
-    running =
+    running=
       true;
 
-    starting =
+    starting=
       false;
 
 
@@ -2254,10 +2193,10 @@ async function startScanner(){
     );
 
 
-    running =
+    running=
       false;
 
-    starting =
+    starting=
       false;
 
 
@@ -2274,7 +2213,7 @@ async function startScanner(){
     }
 
 
-    scanner =
+    scanner=
       null;
 
 
@@ -2283,18 +2222,16 @@ async function startScanner(){
     );
 
 
-    var name =
-      error &&
+    var name=
+      error&&
       error.name
         ? error.name
         : '';
 
 
     if(
-      name ===
-        'NotAllowedError' ||
-      name ===
-        'PermissionDeniedError'
+      name==='NotAllowedError'||
+      name==='PermissionDeniedError'
     ){
 
       setStatus(
@@ -2304,8 +2241,7 @@ async function startScanner(){
       );
 
     }else if(
-      name ===
-        'NotFoundError'
+      name==='NotFoundError'
     ){
 
       setStatus(
@@ -2315,8 +2251,7 @@ async function startScanner(){
       );
 
     }else if(
-      name ===
-        'NotReadableError'
+      name==='NotReadableError'
     ){
 
       setStatus(
@@ -2328,7 +2263,7 @@ async function startScanner(){
     }else{
 
       setStatus(
-        error &&
+        error&&
         error.message
           ? error.message
           : 'Scanner gagal dibuka.',
@@ -2347,15 +2282,13 @@ async function startScanner(){
 
 
 /* =========================================================
-   STOP INTERNAL
-   Dipakai setelah QR terbaca atau
-   saat halaman ditutup.
-   Tidak ada tombol Stop di UI.
+   STOP
 ========================================================= */
 
 async function stopScanner(){
 
-  running=false;
+  running=
+    false;
 
 
   if(scanner){
@@ -2376,7 +2309,8 @@ async function stopScanner(){
   }
 
 
-  scanner=null;
+  scanner=
+    null;
 
 
   idle.classList.remove(
@@ -2399,8 +2333,7 @@ async function switchCamera(){
 
 
   if(
-    cameras.length <
-      2
+    cameras.length<2
   ){
 
     setStatus(
@@ -2414,7 +2347,7 @@ async function switchCamera(){
   }
 
 
-  var active =
+  var active=
     running;
 
 
@@ -2425,10 +2358,10 @@ async function switchCamera(){
   }
 
 
-  cameraIndex =
+  cameraIndex=
     (
-      cameraIndex + 1
-    ) %
+      cameraIndex+1
+    )%
     cameras.length;
 
 
@@ -2453,13 +2386,13 @@ async function switchCamera(){
 
 
 /* =========================================================
-   COPY RESULT
+   COPY
 ========================================================= */
 
-copyButton.onclick =
+copyButton.onclick=
   async function(){
 
-    var value =
+    var value=
       resultValue
         .textContent
         .trim();
@@ -2504,26 +2437,30 @@ copyButton.onclick =
    SCAN AGAIN
 ========================================================= */
 
-scanAgainButton.onclick =
+scanAgainButton.onclick=
   function(){
 
     result.classList.remove(
       'show'
     );
 
+
     lastAccount='';
 
     lastTime=0;
 
+
     idle.classList.remove(
       'hidden'
     );
+
 
     setStatus(
       'Tekan Mulai Scanner untuk scan kembali.',
       null,
       'ti-scan'
     );
+
 
     updateButtons();
 
@@ -2534,11 +2471,11 @@ scanAgainButton.onclick =
    BUTTON EVENTS
 ========================================================= */
 
-startButton.onclick =
+startButton.onclick=
   startScanner;
 
 
-switchButton.onclick =
+switchButton.onclick=
   switchCamera;
 
 
@@ -2571,7 +2508,7 @@ window.addEventListener(
 ========================================================= */
 
 if(
-  typeof Html5Qrcode ===
+  typeof Html5Qrcode===
     'undefined'
 ){
 
