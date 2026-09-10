@@ -16,7 +16,16 @@
 
 <title>Bank Scanner</title>
 
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<!-- TABLER ICONS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+>
+
+<!-- HTML5 QR CODE -->
+<script
+  src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+></script>
 
 <style>
 
@@ -32,6 +41,8 @@ body{
   width:100%;
   height:100%;
 
+  overflow:hidden;
+
   font-family:
     Arial,
     Helvetica,
@@ -39,8 +50,6 @@ body{
 
   background:#07111f;
   color:#fff;
-
-  overflow:hidden;
 }
 
 body{
@@ -68,20 +77,23 @@ body{
 
 
 /* =========================================================
-   TOPBAR
+   HEADER
 ========================================================= */
 
-.topbar{
-  height:64px;
+.header{
 
-  flex:0 0 64px;
+  height:56px;
+
+  flex:0 0 56px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   padding:
-    10px
+    0
     14px;
 
   background:
@@ -89,7 +101,7 @@ body{
       7,
       17,
       31,
-      .96
+      .94
     );
 
   border-bottom:
@@ -103,39 +115,64 @@ body{
     );
 }
 
-.brand{
+.header-left{
+
   display:flex;
+
   align-items:center;
-  gap:10px;
+
+  gap:9px;
 }
 
-.brand-icon{
-  width:40px;
-  height:40px;
+.header-icon{
 
-  border-radius:12px;
+  width:34px;
+  height:34px;
+
+  border-radius:9px;
 
   display:grid;
+
   place-items:center;
 
   background:#155eef;
 
   font-size:18px;
+}
+
+.header-title{
+
+  font-size:12px;
+
   font-weight:700;
+
+  letter-spacing:.04em;
 }
 
-.brand-text strong{
-  display:block;
+.header-subtitle{
 
-  font-size:14px;
+  margin-top:1px;
+
+  font-size:8px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .48
+    );
 }
 
-.brand-text span{
-  display:block;
+.header-status{
 
-  margin-top:2px;
+  display:flex;
 
-  font-size:9px;
+  align-items:center;
+
+  gap:5px;
+
+  font-size:8px;
 
   color:
     rgba(
@@ -146,27 +183,10 @@ body{
     );
 }
 
-.status{
-  display:flex;
-
-  align-items:center;
-
-  gap:7px;
-
-  font-size:9px;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .65
-    );
-}
-
 .status-dot{
-  width:8px;
-  height:8px;
+
+  width:7px;
+  height:7px;
 
   border-radius:50%;
 
@@ -175,7 +195,7 @@ body{
   box-shadow:
     0
     0
-    12px
+    10px
     rgba(
       34,
       197,
@@ -189,28 +209,28 @@ body{
    MAIN
 ========================================================= */
 
-.scanner-wrap{
+.main{
+
   flex:1;
 
   min-height:0;
 
-  width:100%;
-
   display:flex;
-
-  justify-content:center;
 
   align-items:center;
 
-  padding:14px;
+  justify-content:center;
+
+  padding:12px;
 
   overflow:hidden;
 }
 
-.scanner-card{
+.scanner{
+
   width:
     min(
-      560px,
+      500px,
       100%
     );
 
@@ -220,7 +240,7 @@ body{
 
   flex-direction:column;
 
-  gap:11px;
+  gap:9px;
 
   min-height:0;
 }
@@ -230,90 +250,83 @@ body{
    TITLE
 ========================================================= */
 
-.scanner-title{
+.title{
+
   text-align:center;
 
   flex:0 0 auto;
 }
 
-.scanner-title h1{
+.title h1{
+
   margin:0;
 
-  font-size:22px;
+  font-size:18px;
 
   line-height:1.2;
 }
 
-.scanner-title p{
+.title p{
+
   margin:
-    6px
-    auto
+    4px
+    0
     0;
 
-  max-width:430px;
-
-  font-size:10px;
-
-  line-height:1.5;
+  font-size:9px;
 
   color:
     rgba(
       255,
       255,
       255,
-      .55
+      .48
     );
 }
 
 
 /* =========================================================
-   CAMERA VIEW
+   CAMERA
 ========================================================= */
 
-.viewport{
+.camera{
 
   position:relative;
 
   width:100%;
 
-  /*
-   * Tinggi mengikuti ruang yang tersedia.
-   * Tidak lagi memaksa seluruh halaman scanner.
-   */
   height:
     min(
-      560px,
+      500px,
       calc(
-        100vh - 250px
+        100vh - 205px
       )
     );
 
   min-height:300px;
 
-  flex:1 1 auto;
-
   background:#000;
 
-  border-radius:22px;
+  border-radius:18px;
 
   overflow:hidden;
 
   box-shadow:
     0
-    22px
-    60px
+    18px
+    45px
     rgba(
       0,
       0,
       0,
-      .35
+      .30
     );
 }
 
 
-/* html5-qrcode */
-
+/* QR library */
 #reader{
+
   position:absolute;
 
   inset:0;
@@ -321,31 +334,35 @@ body{
   width:100%;
   height:100%;
 
-  background:#000;
-
   z-index:1;
+
+  background:#000;
 }
 
 #reader video{
+
   width:100%!important;
+
   height:100%!important;
 
   object-fit:cover!important;
 
   display:block!important;
-
-  border:0!important;
 }
 
 #reader__dashboard{
   display:none!important;
 }
 
-#reader__scan_region{
-  width:100%!important;
-  height:100%!important;
+#reader__dashboard_section_swaplink{
+  display:none!important;
+}
 
-  min-height:100%!important;
+#reader__scan_region{
+
+  width:100%!important;
+
+  height:100%!important;
 
   background:#000!important;
 
@@ -361,7 +378,8 @@ body{
    OVERLAY
 ========================================================= */
 
-.overlay{
+.camera-shade{
+
   position:absolute;
 
   inset:0;
@@ -374,28 +392,28 @@ body{
     linear-gradient(
       to bottom,
       rgba(0,0,0,.30),
-      rgba(0,0,0,.02) 30%,
-      rgba(0,0,0,.02) 70%,
-      rgba(0,0,0,.30)
+      transparent 25%,
+      transparent 72%,
+      rgba(0,0,0,.38)
     );
 }
 
 
 /* =========================================================
-   SCAN AREA
+   SCAN BOX
 ========================================================= */
 
-.scan-area{
+.scan-box{
 
   position:absolute;
 
-  left:18%;
-  right:18%;
+  left:15%;
+  right:15%;
 
   top:20%;
-  bottom:20%;
+  bottom:23%;
 
-  z-index:8;
+  z-index:10;
 
   border:
     2px
@@ -404,10 +422,10 @@ body{
       255,
       255,
       255,
-      .92
+      .95
     );
 
-  border-radius:22px;
+  border-radius:18px;
 
   box-shadow:
     0
@@ -418,17 +436,7 @@ body{
       0,
       0,
       0,
-      .22
-    ),
-
-    0
-    0
-    30px
-    rgba(
-      21,
-      94,
-      239,
-      .30
+      .18
     );
 
   pointer-events:none;
@@ -440,69 +448,70 @@ body{
 ========================================================= */
 
 .corner{
+
   position:absolute;
 
-  width:42px;
-  height:42px;
+  width:30px;
+  height:30px;
 
-  z-index:9;
-
-  pointer-events:none;
 }
 
 .corner.tl{
+
   left:-2px;
   top:-2px;
 
   border-left:
-    5px
+    4px
     solid
     #fff;
 
   border-top:
-    5px
+    4px
     solid
     #fff;
 
   border-radius:
-    12px
+    10px
     0
     0
     0;
 }
 
 .corner.tr{
+
   right:-2px;
   top:-2px;
 
   border-right:
-    5px
+    4px
     solid
     #fff;
 
   border-top:
-    5px
+    4px
     solid
     #fff;
 
   border-radius:
     0
-    12px
+    10px
     0
     0;
 }
 
 .corner.bl{
+
   left:-2px;
   bottom:-2px;
 
   border-left:
-    5px
+    4px
     solid
     #fff;
 
   border-bottom:
-    5px
+    4px
     solid
     #fff;
 
@@ -510,27 +519,28 @@ body{
     0
     0
     0
-    12px;
+    10px;
 }
 
 .corner.br{
+
   right:-2px;
   bottom:-2px;
 
   border-right:
-    5px
+    4px
     solid
     #fff;
 
   border-bottom:
-    5px
+    4px
     solid
     #fff;
 
   border-radius:
     0
     0
-    12px
+    10px
     0;
 }
 
@@ -543,14 +553,14 @@ body{
 
   position:absolute;
 
-  left:18%;
-  right:18%;
+  left:15%;
+  right:15%;
 
   top:50%;
 
-  height:3px;
+  z-index:11;
 
-  z-index:10;
+  height:2px;
 
   border-radius:99px;
 
@@ -565,38 +575,28 @@ body{
       130,
       246,
       .9
-    ),
-
-    0
-    0
-    18px
-    rgba(
-      59,
-      130,
-      246,
-      .8
     );
 
   animation:
-    scanLine
-    2s
+    scanMove
+    2.2s
     ease-in-out
     infinite;
 
   pointer-events:none;
 }
 
-@keyframes scanLine{
+@keyframes scanMove{
 
   0%,
   100%{
     transform:
-      translateY(-90px);
+      translateY(-80px);
   }
 
   50%{
     transform:
-      translateY(90px);
+      translateY(80px);
   }
 
 }
@@ -620,45 +620,36 @@ body{
 
   justify-content:center;
 
-  padding:25px;
-
   background:
-    radial-gradient(
-      circle at center,
-      rgba(
-        21,
-        94,
-        239,
-        .16
-      ),
-      rgba(
-        7,
-        17,
-        31,
-        .94
-      )
+    rgba(
+      7,
+      17,
+      31,
+      .86
     );
 }
 
-.idle-box{
+.idle-content{
+
   text-align:center;
 
-  max-width:330px;
+  padding:20px;
 }
 
 .idle-icon{
 
-  width:66px;
-  height:66px;
+  width:54px;
+  height:54px;
 
   margin:
     0
     auto
-    13px;
+    10px;
 
-  border-radius:20px;
+  border-radius:15px;
 
   display:grid;
+
   place-items:center;
 
   background:
@@ -669,41 +660,32 @@ body{
       .08
     );
 
-  border:
-    1px
-    solid
-    rgba(
-      255,
-      255,
-      255,
-      .08
-    );
-
-  font-size:27px;
+  font-size:24px;
 }
 
-.idle-box strong{
-  display:block;
-
-  font-size:15px;
-}
-
-.idle-box span{
+.idle-content strong{
 
   display:block;
 
-  margin-top:7px;
+  font-size:14px;
+}
 
-  font-size:10px;
+.idle-content span{
 
-  line-height:1.6;
+  display:block;
+
+  margin-top:5px;
+
+  font-size:9px;
+
+  line-height:1.5;
 
   color:
     rgba(
       255,
       255,
       255,
-      .55
+      .48
     );
 }
 
@@ -712,9 +694,9 @@ body{
    STATUS
 ========================================================= */
 
-.status-box{
+.status{
 
-  min-height:42px;
+  min-height:38px;
 
   flex:0 0 auto;
 
@@ -724,13 +706,13 @@ body{
 
   justify-content:center;
 
-  text-align:center;
+  gap:6px;
 
   padding:
-    8px
-    12px;
+    7px
+    10px;
 
-  border-radius:12px;
+  border-radius:10px;
 
   background:
     rgba(
@@ -750,69 +732,47 @@ body{
       .07
     );
 
-  font-size:10px;
+  font-size:9px;
 
-  line-height:1.5;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .75
-    );
+  text-align:center;
 }
 
-.status-box.error{
+.status i{
+  font-size:15px;
+}
 
-  color:#fecaca;
+.status.error{
 
   background:
     rgba(
       127,
       29,
       29,
-      .28
+      .32
     );
 
-  border-color:
-    rgba(
-      248,
-      113,
-      113,
-      .25
-    );
+  color:#fecaca;
 }
 
-.status-box.success{
-
-  color:#bbf7d0;
+.status.success{
 
   background:
     rgba(
       20,
       83,
       45,
-      .35
+      .32
     );
 
-  border-color:
-    rgba(
-      74,
-      222,
-      128,
-      .25
-    );
+  color:#bbf7d0;
 }
 
 
 /* =========================================================
-   CONTROLS
+   BUTTONS
 ========================================================= */
 
-.controls{
-
-  flex:0 0 auto;
+.actions{
 
   display:grid;
 
@@ -820,48 +780,63 @@ body{
     1fr
     1fr;
 
-  gap:8px;
+  gap:7px;
 }
 
 button{
 
-  min-height:44px;
+  min-height:42px;
 
   border:0;
 
-  border-radius:12px;
+  border-radius:10px;
 
   padding:
     8px
-    12px;
+    11px;
 
-  font:
-    inherit;
-
-  font-size:10px;
+  font-size:9px;
 
   font-weight:700;
 
-  cursor:pointer;
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:6px;
+}
+
+button i{
+  font-size:16px;
 }
 
 button:disabled{
-  opacity:.5;
+
+  opacity:.45;
+
   cursor:not-allowed;
 }
 
-.primary{
+.btn-primary{
+
   background:#155eef;
+
   color:#fff;
 }
 
-.secondary{
+.btn-secondary{
+
   background:#fff;
+
   color:#182033;
 }
 
-.danger{
+.btn-danger{
+
   background:#991b1b;
+
   color:#fff;
 }
 
@@ -870,41 +845,40 @@ button:disabled{
    RESULT
 ========================================================= */
 
-.result-card{
+.result{
 
   display:none;
 
-  flex:0 0 auto;
+  padding:11px;
 
-  padding:13px;
-
-  border-radius:14px;
+  border-radius:12px;
 
   background:#fff;
 
   color:#182033;
 }
 
-.result-card.show{
+.result.show{
+
   display:block;
 }
 
 .result-label{
 
-  font-size:8px;
-
-  font-weight:700;
+  font-size:7px;
 
   letter-spacing:.12em;
 
   color:#7c8798;
+
+  font-weight:700;
 }
 
 .result-value{
 
-  margin-top:6px;
+  margin-top:4px;
 
-  font-size:19px;
+  font-size:18px;
 
   font-weight:700;
 
@@ -919,9 +893,9 @@ button:disabled{
     1fr
     1fr;
 
-  gap:7px;
+  gap:6px;
 
-  margin-top:10px;
+  margin-top:8px;
 }
 
 
@@ -931,343 +905,111 @@ button:disabled{
 
 .footer{
 
-  flex:0 0 auto;
-
-  padding:
-    3px
-    10px
-    8px;
-
   text-align:center;
 
   font-size:7px;
-
-  line-height:1.4;
 
   color:
     rgba(
       255,
       255,
       255,
-      .30
+      .28
     );
+
+  flex:0 0 auto;
 }
 
 
 /* =========================================================
    EMBEDDED MODE
-   INI BAGIAN PALING PENTING
 ========================================================= */
 
-/* =========================================================
-   EMBEDDED MODE - SCANNER DI DALAM IFRAME
-========================================================= */
+body.embedded .header{
+  display:none!important;
+}
 
-body.embedded{
-  width:100%;
+body.embedded .main{
+
+  padding:0;
+
   height:100%;
   min-height:100dvh;
-
-  overflow:hidden;
-
-  background:#07111f;
 }
 
-body.embedded .app{
+body.embedded .scanner{
+
   width:100%;
   height:100%;
-  min-height:100dvh;
 
-  display:block;
-
-  overflow:hidden;
-}
-
-body.embedded .topbar{
-  display:none !important;
-}
-
-body.embedded .scanner-wrap{
-  width:100%;
-  height:100%;
-  min-height:100dvh;
-
-  padding:0 !important;
-
-  display:block;
-
-  overflow:hidden;
-}
-
-body.embedded .scanner-card{
-  width:100%;
-  height:100%;
   max-width:none;
   max-height:none;
 
-  display:block;
-
-  position:relative;
-
-  overflow:hidden;
+  gap:0;
 }
 
-body.embedded .scanner-title{
-  display:none !important;
+body.embedded .title,
+body.embedded .footer{
+  display:none!important;
 }
 
-
-/* =========================================================
-   CAMERA
-========================================================= */
-
-body.embedded .viewport{
-  position:absolute;
-
-  inset:0;
+body.embedded .camera{
 
   width:100%;
   height:100%;
 
-  min-height:100%;
+  min-height:100dvh;
 
   border-radius:0;
-
-  overflow:hidden;
-
-  background:#000;
 }
 
-body.embedded #reader{
-  position:absolute;
-  inset:0;
-
-  width:100%;
-  height:100%;
-
-  z-index:1;
-}
-
-body.embedded #reader video{
-  width:100% !important;
-  height:100% !important;
-
-  object-fit:cover !important;
-}
-
-
-/* =========================================================
-   QR FRAME
-========================================================= */
-
-body.embedded .scan-area{
+body.embedded .status{
 
   position:absolute;
 
-  left:17%;
-  right:17%;
+  left:9px;
+  right:9px;
 
-  top:23%;
-  bottom:28%;
+  bottom:112px;
 
-  z-index:8;
-
-  border:
-    2px
-    solid
-    rgba(
-      255,
-      255,
-      255,
-      .95
-    );
-
-  border-radius:22px;
-
-  box-shadow:
-    0
-    0
-    0
-    9999px
-    rgba(
-      0,
-      0,
-      0,
-      .18
-    );
-
-  pointer-events:none;
-}
-
-body.embedded .scan-line{
-  left:17%;
-  right:17%;
-
-  z-index:9;
-}
-
-
-/* =========================================================
-   IDLE
-========================================================= */
-
-body.embedded .idle{
-  z-index:20;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(
-        21,
-        94,
-        239,
-        .12
-      ),
-      rgba(
-        7,
-        17,
-        31,
-        .78
-      )
-    );
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-body.embedded .status-box{
-
-  position:absolute;
-
-  left:10px;
-  right:10px;
-
-  bottom:132px;
-
-  z-index:40;
-
-  min-height:38px;
-
-  padding:7px 10px;
+  z-index:30;
 
   background:
     rgba(
       7,
       17,
       31,
-      .82
+      .78
     );
 
-  border:
-    1px
-    solid
-    rgba(
-      255,
-      255,
-      255,
-      .14
-    );
-
-  color:#fff;
-
-  backdrop-filter:blur(10px);
-
-  border-radius:12px;
-
-  text-align:center;
+  backdrop-filter:blur(8px);
 }
 
+body.embedded .actions{
 
-/* =========================================================
-   BUTTON AREA
-========================================================= */
+  position:absolute;
 
-body.embedded .controls{
+  left:9px;
+  right:9px;
+
+  bottom:9px;
+
+  z-index:40;
+}
+
+body.embedded .result{
 
   position:absolute;
 
   left:10px;
   right:10px;
 
-  z-index:50;
-
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:8px;
-
-  margin:0;
-
-  padding:0;
-}
-
-
-/*
- * BARIS PERTAMA
- * Mulai Scanner + Ganti Kamera
- */
-body.embedded .controls:nth-of-type(1){
-
-  top:auto;
-
-  bottom:70px;
-}
-
-
-/*
- * BARIS KEDUA
- * Tutup + Coba Lagi
- */
-body.embedded .controls:nth-of-type(2){
-
-  top:auto;
-
-  bottom:12px;
-}
-
-
-/* tombol */
-body.embedded .controls button{
-
-  min-height:48px;
-
-  border-radius:13px;
-
-  box-shadow:
-    0
-    6px
-    18px
-    rgba(
-      0,
-      0,
-      0,
-      .25
-    );
-}
-
-
-/* =========================================================
-   RESULT
-========================================================= */
-
-body.embedded .result-card{
-
-  position:absolute;
-
-  left:12px;
-  right:12px;
-
   top:50%;
 
   transform:
     translateY(-50%);
 
-  z-index:100;
+  z-index:50;
 
   box-shadow:
     0
@@ -1277,41 +1019,107 @@ body.embedded .result-card{
       0,
       0,
       0,
-      .4
+      .40
     );
 }
 
 
 /* =========================================================
-   FOOTER
+   MOBILE
 ========================================================= */
 
-body.embedded .footer{
-  display:none !important;
-}
+@media(max-width:600px){
 
+  .header{
 
-/* =========================================================
-   DESKTOP EMBEDDED
-========================================================= */
+    height:52px;
 
-@media(min-width:701px){
+    flex-basis:52px;
 
-  body.embedded .scan-area{
+    padding:
+      0
+      10px;
+  }
 
-    left:25%;
-    right:25%;
+  .header-icon{
 
-    top:20%;
-    bottom:27%;
+    width:31px;
+    height:31px;
+
+    font-size:16px;
+  }
+
+  .header-title{
+    font-size:11px;
+  }
+
+  .header-subtitle{
+    font-size:7px;
+  }
+
+  .main{
+    padding:7px;
+  }
+
+  .scanner{
+    width:100%;
+  }
+
+  .title h1{
+    font-size:17px;
+  }
+
+  .title p{
+    font-size:8px;
+  }
+
+  .camera{
+
+    height:
+      min(
+        480px,
+        calc(
+          100dvh - 190px
+        )
+      );
+
+    min-height:280px;
+
+    border-radius:15px;
+  }
+
+  .scan-box{
+
+    left:12%;
+    right:12%;
+
+    top:18%;
+    bottom:23%;
 
   }
 
-  body.embedded .scan-line{
+  .scan-line{
 
-    left:25%;
-    right:25%;
+    left:12%;
+    right:12%;
 
+  }
+
+  .corner{
+
+    width:27px;
+    height:27px;
+
+  }
+
+  .status{
+    min-height:36px;
+    font-size:8px;
+  }
+
+  button{
+    min-height:40px;
+    font-size:8px;
   }
 
 }
@@ -1321,271 +1129,74 @@ body.embedded .footer{
    MOBILE EMBEDDED
 ========================================================= */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
-  body.embedded .scan-area{
-
-    left:14%;
-    right:14%;
-
-    top:20%;
-    bottom:30%;
-
-    border-radius:19px;
-
-  }
-
-  body.embedded .scan-line{
-
-    left:14%;
-    right:14%;
-
-  }
-
-  body.embedded .status-box{
-
-    left:8px;
-    right:8px;
-
-    bottom:126px;
-
-    font-size:9px;
-
-  }
-
-  body.embedded .controls{
-
-    left:8px;
-    right:8px;
-
-    gap:6px;
-
-  }
-
-  body.embedded .controls:nth-of-type(1){
-
-    bottom:65px;
-
-  }
-
-  body.embedded .controls:nth-of-type(2){
-
-    bottom:8px;
-
-  }
-
-  body.embedded .controls button{
-
-    min-height:46px;
-
-    font-size:10px;
-
-  }
-
-}
-
-
-/* =========================================================
-   HP KECIL
-========================================================= */
-
-@media(max-width:420px){
-
-  body.embedded .scan-area{
+  body.embedded .scan-box{
 
     left:13%;
     right:13%;
 
-    top:19%;
-    bottom:31%;
+    top:23%;
+    bottom:30%;
 
-  }
-
-  body.embedded .status-box{
-
-    bottom:120px;
-
-    font-size:8px;
-
-  }
-
-  body.embedded .controls{
-
-    left:6px;
-    right:6px;
-
-  }
-
-  body.embedded .controls:nth-of-type(1){
-
-    bottom:62px;
-
-  }
-
-  body.embedded .controls:nth-of-type(2){
-
-    bottom:6px;
-
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE NORMAL
-========================================================= */
-
-@media(max-width:700px){
-
-  .topbar{
-    min-height:58px;
-    height:58px;
-    flex-basis:58px;
-  }
-
-  .brand-icon{
-    width:35px;
-    height:35px;
-  }
-
-  .brand-text strong{
-    font-size:13px;
-  }
-
-  .brand-text span{
-    font-size:8px;
-  }
-
-  .status{
-    display:none;
-  }
-
-  .scanner-wrap{
-    padding:8px;
-  }
-
-  .scanner-title h1{
-    font-size:19px;
-  }
-
-  .viewport{
-    height:
-      min(
-        500px,
-        calc(
-          100dvh - 250px
-        )
-      );
-
-    min-height:300px;
-
-    border-radius:16px;
-  }
-
-  .scan-area{
-    left:15%;
-    right:15%;
-
-    top:19%;
-    bottom:19%;
-  }
-
-  .scan-line{
-    left:15%;
-    right:15%;
-  }
-
-  .corner{
-    width:36px;
-    height:36px;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE EMBEDDED
-========================================================= */
-
-@media(max-width:700px){
-
-  body.embedded .viewport{
-
-    width:100%;
-    height:100%;
-
-    min-height:100dvh;
-
-    border-radius:0;
-  }
-
-  body.embedded .scan-area{
-
-    left:16%;
-    right:16%;
-
-    top:25%;
-    bottom:25%;
-
-    border-radius:20px;
   }
 
   body.embedded .scan-line{
 
-    left:16%;
-    right:16%;
+    left:13%;
+    right:13%;
 
-    animation-duration:2.2s;
   }
 
-  body.embedded .controls{
+  body.embedded .status{
 
-    left:8px;
-    right:8px;
+    left:7px;
+    right:7px;
 
-    top:8px;
+    bottom:104px;
 
-    gap:7px;
   }
 
-  body.embedded .controls:nth-of-type(2){
+  body.embedded .actions{
 
-    bottom:48px;
+    left:7px;
+    right:7px;
+
+    bottom:7px;
+
+    gap:5px;
+
   }
 
-  body.embedded .status-box{
+  body.embedded .actions button{
 
-    left:8px;
-    right:8px;
+    min-height:43px;
 
-    bottom:8px;
   }
 
 }
 
 
 /* =========================================================
-   VERY SMALL
+   SMALL PHONE
 ========================================================= */
 
-@media(max-width:420px){
+@media(max-width:380px){
 
-  .scanner-wrap{
-    padding:6px;
+  .camera{
+
+    height:
+      calc(
+        100dvh - 185px
+      );
+
   }
 
-  .viewport{
-    min-height:280px;
-  }
+  body.embedded .scan-box{
 
-  .scan-area{
-    left:14%;
-    right:14%;
-  }
+    top:22%;
+    bottom:31%;
 
-  .scan-line{
-    left:14%;
-    right:14%;
   }
 
 }
@@ -1599,35 +1210,37 @@ body.embedded .footer{
 
 <div class="app">
 
-  <header class="topbar">
 
-    <div class="brand">
+  <!-- HEADER -->
+  <header class="header">
 
-      <div class="brand-icon">
-        QR
+    <div class="header-left">
+
+      <div class="header-icon">
+        <i class="ti ti-qrcode"></i>
       </div>
 
-      <div class="brand-text">
+      <div>
 
-        <strong>
+        <div class="header-title">
           BANK SCANNER
-        </strong>
+        </div>
 
-        <span>
+        <div class="header-subtitle">
           Live QR Account Scanner
-        </span>
+        </div>
 
       </div>
 
     </div>
 
 
-    <div class="status">
+    <div class="header-status">
 
       <span class="status-dot"></span>
 
       <span>
-        Scanner
+        LIVE
       </span>
 
     </div>
@@ -1635,27 +1248,28 @@ body.embedded .footer{
   </header>
 
 
-  <main class="scanner-wrap">
+  <!-- MAIN -->
+  <main class="main">
 
-    <section class="scanner-card">
+    <section class="scanner">
 
 
-      <div class="scanner-title">
+      <!-- TITLE -->
+      <div class="title">
 
         <h1>
           Scan QR Rekening
         </h1>
 
         <p>
-          Arahkan kamera belakang HP
-          ke QR rekening.
+          Arahkan QR rekening ke kotak scan.
         </p>
 
       </div>
 
 
-      <div class="viewport">
-
+      <!-- CAMERA -->
+      <div class="camera">
 
         <div id="reader"></div>
 
@@ -1665,10 +1279,12 @@ body.embedded .footer{
           class="idle"
         >
 
-          <div class="idle-box">
+          <div class="idle-content">
 
             <div class="idle-icon">
-              ⌗
+
+              <i class="ti ti-camera"></i>
+
             </div>
 
             <strong>
@@ -1676,7 +1292,7 @@ body.embedded .footer{
             </strong>
 
             <span>
-              Tekan "Mulai Scanner"
+              Tekan tombol Mulai Scanner
               untuk membuka kamera.
             </span>
 
@@ -1685,10 +1301,10 @@ body.embedded .footer{
         </div>
 
 
-        <div class="overlay"></div>
+        <div class="camera-shade"></div>
 
 
-        <div class="scan-area">
+        <div class="scan-box">
 
           <div class="corner tl"></div>
 
@@ -1703,69 +1319,94 @@ body.embedded .footer{
 
         <div class="scan-line"></div>
 
-
       </div>
 
 
+      <!-- STATUS -->
       <div
         id="status"
-        class="status-box"
+        class="status"
       >
-        Scanner siap.
+
+        <i class="ti ti-camera-off"></i>
+
+        <span>
+          Scanner belum aktif.
+        </span>
+
       </div>
 
 
-      <div class="controls">
+      <!-- BUTTON BARIS 1 -->
+      <div class="actions">
 
         <button
           id="startButton"
-          class="primary"
+          class="btn-primary"
           type="button"
         >
-          📷 Mulai Scanner
+
+          <i class="ti ti-camera"></i>
+
+          Mulai Scanner
+
         </button>
 
 
         <button
           id="switchButton"
-          class="secondary"
+          class="btn-secondary"
           type="button"
         >
-          🔄 Ganti Kamera
+
+          <i class="ti ti-switch-2"></i>
+
+          Ganti Kamera
+
         </button>
 
       </div>
 
 
-      <div class="controls">
+      <!-- BUTTON BARIS 2 -->
+      <div class="actions">
 
         <button
           id="stopButton"
-          class="danger"
+          class="btn-danger"
           type="button"
         >
-          ⛔ Tutup Scanner
+
+          <i class="ti ti-camera-off"></i>
+
+          Tutup Scanner
+
         </button>
 
 
         <button
           id="retryButton"
-          class="secondary"
+          class="btn-secondary"
           type="button"
         >
-          ↻ Coba Lagi
+
+          <i class="ti ti-refresh"></i>
+
+          Coba Lagi
+
         </button>
 
       </div>
 
 
+      <!-- RESULT -->
       <div
-        id="resultCard"
-        class="result-card"
+        id="result"
+        class="result"
       >
 
         <div class="result-label">
-          HASIL QR
+          HASIL SCAN
         </div>
 
 
@@ -1781,19 +1422,27 @@ body.embedded .footer{
 
           <button
             id="copyButton"
-            class="primary"
+            class="btn-primary"
             type="button"
           >
+
+            <i class="ti ti-copy"></i>
+
             Salin
+
           </button>
 
 
           <button
             id="scanAgainButton"
-            class="secondary"
+            class="btn-secondary"
             type="button"
           >
+
+            <i class="ti ti-scan"></i>
+
             Scan Lagi
+
           </button>
 
         </div>
@@ -1802,8 +1451,11 @@ body.embedded .footer{
 
 
       <div class="footer">
-        BANK NASABAH • Live QR Scanner • HTTPS
+
+        BANK NASABAH • QR Scanner HTTPS
+
       </div>
+
 
     </section>
 
@@ -1820,18 +1472,16 @@ body.embedded .footer{
 
 
 /* =========================================================
-   EMBEDDED DETECTION
+   EMBEDDED
 ========================================================= */
 
-var params=
+var params =
   new URLSearchParams(
     window.location.search
   );
 
-
-var embedded=
-  params.get('embedded')==='1';
-
+var embedded =
+  params.get('embedded') === '1';
 
 if(embedded){
 
@@ -1843,101 +1493,82 @@ if(embedded){
 
 
 /* =========================================================
-   ELEMENTS
+   ELEMENT
 ========================================================= */
 
-var readerElement=
+var reader =
   document.getElementById(
     'reader'
   );
 
-
-var idle=
+var idle =
   document.getElementById(
     'idle'
   );
 
-
-var statusBox=
+var statusBox =
   document.getElementById(
     'status'
   );
 
-
-var startButton=
+var startButton =
   document.getElementById(
     'startButton'
   );
 
-
-var switchButton=
+var switchButton =
   document.getElementById(
     'switchButton'
   );
 
-
-var stopButton=
+var stopButton =
   document.getElementById(
     'stopButton'
   );
 
-
-var retryButton=
+var retryButton =
   document.getElementById(
     'retryButton'
   );
 
-
-var resultCard=
+var result =
   document.getElementById(
-    'resultCard'
+    'result'
   );
 
-
-var resultValue=
+var resultValue =
   document.getElementById(
     'resultValue'
   );
 
-
-var copyButton=
+var copyButton =
   document.getElementById(
     'copyButton'
   );
 
-
-var scanAgainButton=
+var scanAgainButton =
   document.getElementById(
     'scanAgainButton'
   );
 
 
-var scanner=
-  null;
+/* =========================================================
+   STATE
+========================================================= */
 
+var scanner = null;
 
-var running=
-  false;
+var running = false;
 
+var starting = false;
 
-var starting=
-  false;
+var cameras = [];
 
+var cameraIndex = 0;
 
-var cameras=
-  [];
+var lastAccount = '';
 
-
-var cameraIndex=
-  0;
-
-
-var lastValue=
-  '';
-
-
-var lastTime=
-  0;
+var lastTime = 0;
 
 
 /* =========================================================
@@ -1945,15 +1576,33 @@ var lastTime=
 ========================================================= */
 
 function setStatus(
-  message,
-  type
+  text,
+  type,
+  icon
 ){
 
-  statusBox.textContent=
-    message;
+  var span =
+    statusBox.querySelector(
+      'span'
+    );
 
-  statusBox.className=
-    'status-box';
+  var i =
+    statusBox.querySelector(
+      'i'
+    );
+
+  span.textContent =
+    text;
+
+  i.className =
+    'ti '+
+    (
+      icon ||
+      'ti-info-circle'
+    );
+
+  statusBox.className =
+    'status';
 
   if(type){
 
@@ -1967,82 +1616,95 @@ function setStatus(
 
 
 /* =========================================================
-   BUTTONS
+   BUTTON STATE
 ========================================================= */
 
 function updateButtons(){
 
-  startButton.disabled=
+  startButton.disabled =
     running ||
     starting;
 
-  stopButton.disabled=
+  stopButton.disabled =
     !running;
 
-  switchButton.disabled=
+  switchButton.disabled =
+    starting;
+
+  retryButton.disabled =
     starting;
 
 }
 
 
 /* =========================================================
-   PARSE QR
+   ACCOUNT PARSER
 ========================================================= */
 
 function parseAccount(
   raw
 ){
 
-  var value=
+  var value =
     String(
-      raw||''
+      raw || ''
     ).trim();
 
 
-  var parts=
+  var parts =
     value.split('|');
 
 
   if(
-    parts.length>=3 &&
+    parts.length >= 3 &&
     (
-      parts[0]==='BANKNASABAH' ||
-      parts[0]==='BANKAPP'
+      parts[0] ===
+        'BANKNASABAH' ||
+      parts[0] ===
+        'BANKAPP'
     ) &&
-    parts[1]==='REK'
+    parts[1] ===
+      'REK'
   ){
 
-    value=
+    value =
       parts[2].trim();
 
   }
 
 
-  value=
+  value =
     value.replace(
       /[^\d]/g,
       ''
     );
 
 
-  return /^\d+$/.test(
-    value
-  )
-    ? value
-    : '';
+  if(
+    /^\d+$/.test(
+      value
+    )
+  ){
+
+    return value;
+
+  }
+
+
+  return '';
 
 }
 
 
 /* =========================================================
-   SEND RESULT
+   SEND MESSAGE TO MAIN APP
 ========================================================= */
 
 function sendResult(
   account
 ){
 
-  var message={
+  var message = {
 
     type:
       'BANK_SCANNER_RESULT',
@@ -2060,7 +1722,7 @@ function sendResult(
 
     if(
       window.parent &&
-      window.parent!==window
+      window.parent !== window
     ){
 
       window.parent.postMessage(
@@ -2097,16 +1759,14 @@ function sendResult(
       in window
     ){
 
-      var channel=
+      var channel =
         new BroadcastChannel(
           'BANK_NASABAH_SCANNER'
         );
 
-
       channel.postMessage(
         message
       );
-
 
       channel.close();
 
@@ -2118,14 +1778,14 @@ function sendResult(
 
 
 /* =========================================================
-   HANDLE SCAN
+   HANDLE RESULT
 ========================================================= */
 
-function handleScan(
+async function handleResult(
   decodedText
 ){
 
-  var account=
+  var account =
     parseAccount(
       decodedText
     );
@@ -2135,7 +1795,8 @@ function handleScan(
 
     setStatus(
       'QR terbaca tetapi bukan QR rekening Bank Nasabah.',
-      'error'
+      'error',
+      'ti-alert-triangle'
     );
 
     return;
@@ -2143,14 +1804,15 @@ function handleScan(
   }
 
 
-  var now=
+  var now =
     Date.now();
 
 
   if(
-    account===
-      lastValue &&
-    now-lastTime<2500
+    account ===
+      lastAccount &&
+    now-lastTime <
+      2500
   ){
 
     return;
@@ -2158,26 +1820,25 @@ function handleScan(
   }
 
 
-  lastValue=
+  lastAccount =
     account;
 
-  lastTime=
+  lastTime =
     now;
 
 
-  resultValue.textContent=
+  resultValue.textContent =
     account;
 
-
-  resultCard.classList.add(
+  result.classList.add(
     'show'
   );
 
 
   setStatus(
-    'QR berhasil dibaca: '+
-    account,
-    'success'
+    'QR berhasil dibaca.',
+    'success',
+    'ti-circle-check'
   );
 
 
@@ -2186,7 +1847,7 @@ function handleScan(
   );
 
 
-  stopScanner();
+  await stopScanner();
 
 
   updateButtons();
@@ -2195,14 +1856,14 @@ function handleScan(
 
 
 /* =========================================================
-   CAMERA LIST
+   GET CAMERAS
 ========================================================= */
 
 async function getCameras(){
 
   try{
 
-    cameras=
+    cameras =
       (
         await navigator
           .mediaDevices
@@ -2211,41 +1872,39 @@ async function getCameras(){
       .filter(
         function(device){
 
-          return device.kind===
+          return device.kind ===
             'videoinput';
 
         }
       );
 
-  }catch(error){
+  }catch(_){
 
-    console.error(error);
-
-    cameras=[];
+    cameras = [];
 
   }
 
 }
 
 
-function chooseRearCamera(){
+function selectRearCamera(){
 
-  var index=
+  var index =
     cameras.findIndex(
-      function(device){
+      function(camera){
 
         return /back|rear|environment/i
           .test(
-            device.label||''
+            camera.label || ''
           );
 
       }
     );
 
 
-  if(index>=0){
+  if(index >= 0){
 
-    cameraIndex=
+    cameraIndex =
       index;
 
   }
@@ -2254,7 +1913,7 @@ function chooseRearCamera(){
 
 
 /* =========================================================
-   START
+   START SCANNER
 ========================================================= */
 
 async function startScanner(){
@@ -2270,13 +1929,14 @@ async function startScanner(){
 
 
   if(
-    typeof Html5Qrcode===
-    'undefined'
+    typeof Html5Qrcode ===
+      'undefined'
   ){
 
     setStatus(
-      'Library scanner belum dimuat. Muat ulang halaman GitHub Pages.',
-      'error'
+      'Library scanner belum dimuat. Muat ulang halaman.',
+      'error',
+      'ti-alert-circle'
     );
 
     return;
@@ -2291,7 +1951,8 @@ async function startScanner(){
 
     setStatus(
       'Browser tidak mendukung kamera live.',
-      'error'
+      'error',
+      'ti-device-camera-off'
     );
 
     return;
@@ -2300,14 +1961,18 @@ async function startScanner(){
 
 
   if(
-    location.protocol!=='https:' &&
-    location.hostname!=='localhost' &&
-    location.hostname!=='127.0.0.1'
+    location.protocol !==
+      'https:' &&
+    location.hostname !==
+      'localhost' &&
+    location.hostname !==
+      '127.0.0.1'
   ){
 
     setStatus(
       'Scanner harus dibuka melalui HTTPS.',
-      'error'
+      'error',
+      'ti-lock'
     );
 
     return;
@@ -2315,31 +1980,25 @@ async function startScanner(){
   }
 
 
-  starting=
+  starting =
     true;
-
 
   updateButtons();
 
 
-  resultCard.classList.remove(
-    'show'
-  );
-
-
   setStatus(
     'Meminta izin kamera...',
-    null
+    null,
+    'ti-loader-2'
   );
 
 
   try{
 
     /*
-     * Permission.
+     * Minta permission.
      */
-
-    var permissionStream=
+    var permissionStream =
       await navigator
         .mediaDevices
         .getUserMedia({
@@ -2362,9 +2021,7 @@ async function startScanner(){
         function(track){
 
           try{
-
             track.stop();
-
           }catch(_){}
 
         }
@@ -2374,7 +2031,7 @@ async function startScanner(){
     await getCameras();
 
 
-    chooseRearCamera();
+    selectRearCamera();
 
 
     if(scanner){
@@ -2390,13 +2047,13 @@ async function startScanner(){
     }
 
 
-    scanner=
+    scanner =
       new Html5Qrcode(
         'reader'
       );
 
 
-    var camera;
+    var cameraId;
 
 
     if(
@@ -2404,18 +2061,21 @@ async function startScanner(){
       cameras[cameraIndex].deviceId
     ){
 
-      camera=
+      cameraId =
         cameras[
           cameraIndex
         ].deviceId;
 
     }else{
 
-      camera={
-        facingMode:{
-          ideal:
-            'environment'
-        }
+      cameraId = {
+
+        facingMode:
+          {
+            ideal:
+              'environment'
+          }
+
       };
 
     }
@@ -2426,43 +2086,30 @@ async function startScanner(){
     );
 
 
-    var width=
-      window.innerWidth||
-      640;
-
-
-    var qrSize=
-      embedded
-        ? Math.max(
-            190,
-            Math.min(
-              280,
-              Math.floor(
-                width*.62
-              )
-            )
+    var size =
+      Math.max(
+        170,
+        Math.min(
+          280,
+          Math.floor(
+            window.innerWidth *
+            .58
           )
-        : Math.max(
-            210,
-            Math.min(
-              300,
-              Math.floor(
-                width*.62
-              )
-            )
-          );
+        )
+      );
 
 
     await scanner.start(
 
-      camera,
+      cameraId,
 
       {
+
         fps:10,
 
         qrbox:{
-          width:qrSize,
-          height:qrSize
+          width:size,
+          height:size
         },
 
         aspectRatio:1,
@@ -2473,16 +2120,16 @@ async function startScanner(){
 
       function(decodedText){
 
-        handleScan(
+        handleResult(
           decodedText
         );
 
       },
 
-      function(errorMessage){
+      function(){
 
         /*
-         * Normal decode error.
+         * Decode error normal.
          */
 
       }
@@ -2490,16 +2137,17 @@ async function startScanner(){
     );
 
 
-    running=
+    running =
       true;
 
-    starting=
+    starting =
       false;
 
 
     setStatus(
-      'Kamera LIVE aktif. Arahkan QR ke kotak.',
-      null
+      'Kamera LIVE. Arahkan QR ke kotak.',
+      null,
+      'ti-camera'
     );
 
 
@@ -2509,41 +2157,31 @@ async function startScanner(){
   }catch(error){
 
     console.error(
-      'SCANNER ERROR:',
       error
     );
 
 
-    starting=
+    running =
       false;
 
-    running=
+    starting =
       false;
 
 
-    try{
+    if(scanner){
 
-      if(scanner){
-
+      try{
         await scanner.stop();
+      }catch(_){}
 
-      }
-
-    }catch(_){}
-
-
-    try{
-
-      if(scanner){
-
+      try{
         await scanner.clear();
+      }catch(_){}
 
-      }
-
-    }catch(_){}
+    }
 
 
-    scanner=
+    scanner =
       null;
 
 
@@ -2552,7 +2190,7 @@ async function startScanner(){
     );
 
 
-    var name=
+    var name =
       error &&
       error.name
         ? error.name
@@ -2560,40 +2198,38 @@ async function startScanner(){
 
 
     if(
-      name==='NotAllowedError'||
-      name==='PermissionDeniedError'
+      name ===
+        'NotAllowedError' ||
+      name ===
+        'PermissionDeniedError'
     ){
 
       setStatus(
-        'Kamera diblokir browser. Izinkan kamera untuk halaman ini lalu tekan Coba Lagi.',
-        'error'
+        'Kamera diblokir browser. Izinkan kamera untuk situs ini.',
+        'error',
+        'ti-camera-off'
       );
 
     }else if(
-      name==='NotFoundError'
+      name ===
+        'NotFoundError'
     ){
 
       setStatus(
-        'Kamera tidak ditemukan pada perangkat.',
-        'error'
+        'Kamera tidak ditemukan.',
+        'error',
+        'ti-device-camera-off'
       );
 
     }else if(
-      name==='NotReadableError'
+      name ===
+        'NotReadableError'
     ){
 
       setStatus(
         'Kamera sedang digunakan aplikasi lain.',
-        'error'
-      );
-
-    }else if(
-      name==='SecurityError'
-    ){
-
-      setStatus(
-        'Akses kamera diblokir browser. Pastikan HTTPS aktif.',
-        'error'
+        'error',
+        'ti-camera-off'
       );
 
     }else{
@@ -2603,7 +2239,8 @@ async function startScanner(){
         error.message
           ? error.message
           : 'Scanner gagal dibuka.',
-        'error'
+        'error',
+        'ti-alert-circle'
       );
 
     }
@@ -2622,7 +2259,7 @@ async function startScanner(){
 
 async function stopScanner(){
 
-  running=
+  running =
     false;
 
 
@@ -2644,7 +2281,7 @@ async function stopScanner(){
   }
 
 
-  scanner=
+  scanner =
     null;
 
 
@@ -2668,12 +2305,14 @@ async function switchCamera(){
 
 
   if(
-    cameras.length<2
+    cameras.length <
+      2
   ){
 
     setStatus(
       'Perangkat hanya memiliki satu kamera.',
-      'error'
+      'error',
+      'ti-camera-off'
     );
 
     return;
@@ -2681,25 +2320,25 @@ async function switchCamera(){
   }
 
 
-  var wasRunning=
+  var active =
     running;
 
 
-  if(wasRunning){
+  if(active){
 
     await stopScanner();
 
   }
 
 
-  cameraIndex=
+  cameraIndex =
     (
-      cameraIndex+1
-    )%
+      cameraIndex + 1
+    ) %
     cameras.length;
 
 
-  if(wasRunning){
+  if(active){
 
     setTimeout(
       startScanner,
@@ -2710,7 +2349,8 @@ async function switchCamera(){
 
     setStatus(
       'Kamera dipilih. Tekan Mulai Scanner.',
-      null
+      null,
+      'ti-camera'
     );
 
   }
@@ -2722,10 +2362,10 @@ async function switchCamera(){
    COPY
 ========================================================= */
 
-copyButton.onclick=
+copyButton.onclick =
   async function(){
 
-    var value=
+    var value =
       resultValue
         .textContent
         .trim();
@@ -2747,7 +2387,8 @@ copyButton.onclick=
 
       setStatus(
         'Nomor rekening berhasil disalin.',
-        'success'
+        'success',
+        'ti-copy'
       );
 
 
@@ -2756,7 +2397,8 @@ copyButton.onclick=
       setStatus(
         'Nomor rekening: '+
         value,
-        'success'
+        'success',
+        'ti-info-circle'
       );
 
     }
@@ -2768,17 +2410,17 @@ copyButton.onclick=
    SCAN AGAIN
 ========================================================= */
 
-scanAgainButton.onclick=
+scanAgainButton.onclick =
   function(){
 
-    resultCard.classList.remove(
+    result.classList.remove(
       'show'
     );
 
-    lastValue=
+    lastAccount =
       '';
 
-    lastTime=
+    lastTime =
       0;
 
     idle.classList.remove(
@@ -2787,7 +2429,8 @@ scanAgainButton.onclick=
 
     setStatus(
       'Tekan Mulai Scanner untuk scan kembali.',
-      null
+      null,
+      'ti-scan'
     );
 
     updateButtons();
@@ -2799,49 +2442,50 @@ scanAgainButton.onclick=
    BUTTON EVENTS
 ========================================================= */
 
-startButton.onclick=
+startButton.onclick =
   startScanner;
 
 
-retryButton.onclick=
+retryButton.onclick =
   async function(){
 
     await stopScanner();
 
-    lastValue=
-      '';
-
-    lastTime=
-      0;
-
-    resultCard.classList.remove(
+    result.classList.remove(
       'show'
     );
 
+    lastAccount =
+      '';
+
+    lastTime =
+      0;
+
     setTimeout(
       startScanner,
-      120
+      100
     );
 
   };
 
 
-switchButton.onclick=
+switchButton.onclick =
   switchCamera;
 
 
-stopButton.onclick=
+stopButton.onclick =
   async function(){
 
     await stopScanner();
 
-    resultCard.classList.remove(
+    result.classList.remove(
       'show'
     );
 
     setStatus(
       'Scanner dihentikan.',
-      null
+      null,
+      'ti-camera-off'
     );
 
   };
@@ -2871,47 +2515,27 @@ window.addEventListener(
 );
 
 
-document.addEventListener(
-  'visibilitychange',
-  function(){
-
-    if(
-      document.hidden &&
-      running
-    ){
-
-      stopScanner();
-
-      setStatus(
-        'Scanner dihentikan karena halaman tidak aktif.',
-        null
-      );
-
-    }
-
-  }
-);
-
-
 /* =========================================================
-   INIT
+   INITIAL
 ========================================================= */
 
 if(
-  typeof Html5Qrcode===
-  'undefined'
+  typeof Html5Qrcode ===
+    'undefined'
 ){
 
   setStatus(
-    'Library scanner gagal dimuat. Muat ulang halaman.',
-    'error'
+    'Library scanner belum tersedia.',
+    'error',
+    'ti-alert-circle'
   );
 
 }else{
 
   setStatus(
-    'Scanner siap. Tekan Mulai Scanner.',
-    null
+    'Scanner siap.',
+    null,
+    'ti-scan'
   );
 
 }
